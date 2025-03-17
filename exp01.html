@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@3"></script>
+    <style>
+        .text-blue{
+            color: blue;
+        }
+        .text-orange{
+            color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 card mt-3" id="myapp">
+                <img v-bind:src="ImgSrc" class="card-img-top" v-bind:alt="Title" v-bind:title="Title">
+                <div class="card-body">
+                  <h5 class="card-title">{{Title}}</h5>
+                  <p class="card-text">根據黃小潔在 Facebook 上的聲明，開頭就先對於所有受到影響的群體道歉。解釋當初沒有立刻回應，是因為自己無法聯繫到羽衣媽媽的版權方，<span v-bind:style="lineStyle1">台灣也沒有相關的窗口。所以想要談到授權，</span>並不像是 2021 年時期，羽衣媽媽粉絲規模還沒擴大前容易。但犯錯就是犯錯，因此黃小潔也再次表達歉意。</p>
+                  <p class="card-text">事發後，黃小潔也積極的尋找日本聯絡窗口，直到 2024 年底時，得知羽衣媽媽將會在台灣帶來快閃咖啡廳和一卡通產品，因此通過友人終於成功接觸到台灣相關單位進行接洽。官方願意授權，<span v-bind:style="lineStyle2">黃小潔會自行承擔重新貼膜痛車費用，以及參與後續行銷和宣傳。</span>這也是他想等一切都確定後才公開的原因。</p>
+                  <p class="card-text">黃小潔也認為：「<span :class="keyclass1">換句話說，官方雖然沒有明確禁止，但也不會正式認可，希望二創內容不要與官方正式合作產生關聯。</span>二創作品一直處於灰色地帶，沒有絕對的標準，因此這次與羽衣媽媽的合作最終只能遺憾終止。」</p>
+                  <p v-bind:class="`card-text ${keyclass2}`">而對於黃小潔的回應，網友們抱持兩極化的意見，其中有人提到早在 2021 年時，就曾經有日本網友詢問過羽衣媽媽是否能用她的圖來痛車，羽衣媽媽也親自回應雖然很感謝這份心意，但還是不希望使用她的插圖痛車。</p>
+                  <a v-bind:href="sLink" class="btn btn-primary">資料來源</a>
+                </div>
+              </div>
+        </div>
+    </div>
+</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script language="javascript">
+        const newVue3 = Vue.createApp({
+            data() {
+                return {
+                    ImgSrc: "https://s.yimg.com/ny/api/res/1.2/wvFRhTP7Epbl4I98fX7zyA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTU0MDtjZj13ZWJw/https://s.yimg.com/os/creatr-uploaded-images/2025-03/c6ef6500-02d6-11f0-bffb-ef579060b1c2",
+                    Title: "Vue 台灣YTer黃小潔回應「時雨羽衣」痛車授權爭議，日方：默認允許 但不正式批准",
+                    lineStyle1: "color:red;",
+                    lineStyle2: "color:green;",
+                    keyclass1: "text-blue",
+                    keyclass2: "text-orange",
+                    sLink:"https://tw.news.yahoo.com/%E5%8F%B0%E7%81%A3yter%E9%BB%83%E5%B0%8F%E6%BD%94%E5%9B%9E%E6%87%89%E3%80%8C%E6%99%82%E9%9B%A8%E7%BE%BD%E8%A1%A3%E3%80%8D%E7%97%9B%E8%BB%8A%E6%8E%88%E6%AC%8A%E7%88%AD%E8%AD%B0%EF%BC%8C%E6%97%A5%E6%96%B9%EF%BC%9A%E9%BB%98%E8%AA%8D%E5%85%81%E8%A8%B1-%E4%BD%86%E4%B8%8D%E6%AD%A3%E5%BC%8F%E6%89%B9%E5%87%86-022621694.html",
+                }
+            },
+        });
+        newVue3.mount('#myapp');
+    </script>
+
+</html>
