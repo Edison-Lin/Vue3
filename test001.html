@@ -11,11 +11,73 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
+    <div id="myapp">
+        <div class="container">
+            <h1>{{message}}</h1>
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <!-- <th scope="col">{{TableCol[0]}}</th>
+                        <th scope="col">{{TableCol[1]}}</th>
+                        <th scope="col">{{TableCol[2]}}</th>
+                        <th scope="col">{{TableCol[3]}}</th>
+                        <th scope="col">{{TableCol[4]}}</th> -->
+                        <th v-for="item in TableCol" scope="col">{{item}}</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr v-for="item,index in productList">
+                        <td>{{index}}</td>
+                        <td>{{item.p_id}}</td>
+                        <td>
+                            <img v-bind:src="`./product_img/${item.img_file}`" :title="`${item.p_name}`" class="card-img-top img-fluid"
+                                :alt="`${item.p_name}`" ></td>
+                        <td>{{item.p_name}}</td>
+                        <td>{{item.p_intro}}</td>
+                        <td>{{item.p_price}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
 </body>
-    <script language="javascript">
-    </script>
+<script language="javascript">
+    const newVue3 = Vue.createApp({
+        data() {
+            return {
+                message: "電商藥粧產品列表",
+                TableCol: ["序號", "產品編號", "圖片", "名稱", "簡介", "價格"],
+                productList: [],
+            }
+        },
+        methods: {
+            getProductInfo: function () {
+                axios.get('product.php', {
+                    params: {
+                        mode: '1',
+                    }
+                }).then((res)=>{
+                    let data=res.data;
+                    if(data.c==true){
+                        this.productList=data.d;
+                    }else{
+                        alert(data.m);
+                    }
+                }).catch(function(error){
+                    alert('目前系統無法連接到後台資料庫!');
+                });
+            }
+        },
+        mount() { 
+            this.getProductInfo(); //vue框架建立時，即從後端取得產品資訊
+        },
+    });
+    newVue3.mount('#myapp');
+</script>
 
 </html>
