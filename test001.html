@@ -64,6 +64,7 @@
                 }).then((res)=>{
                     let data=res.data;
                     if(data.c==true){
+                        console.log(data.d);
                         this.productList=data.d;
                     }else{
                         alert(data.m);
@@ -73,7 +74,7 @@
                 });
             }
         },
-        mount() { 
+        mounted() { 
             this.getProductInfo(); //vue框架建立時，即從後端取得產品資訊
         },
     });

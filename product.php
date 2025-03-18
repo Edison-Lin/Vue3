@@ -2,8 +2,8 @@
 header('Access-Control-Allow-Origin:*');
 header('Content-Type:application/json;charset=utf-8');
 //return json string
-$Connection = "./Connections/";
-require_once($Connection . 'conn_db.php');
+
+require_once('conn_db.php');
 
 $retcode = array('c' => "0", 'm' => "抱歉!資料無法寫入後台資料庫，請聯絡管理人員。");
 if (isset($_GET['mode'])) {
